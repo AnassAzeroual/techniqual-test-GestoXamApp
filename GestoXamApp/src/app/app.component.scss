@@ -1,0 +1,50 @@
+.header-layout-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: var(--header-bg, #fff);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    border-radius: 0 0 16px 16px;
+    transition: background 0.3s;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.app-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--header-title, #222);
+    letter-spacing: 1px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.dark-mode-switch {
+    cursor: pointer;
+    user-select: none;
+    // border: 1px solid red;
+    padding: 0.5rem 1rem;
+
+    .switch-label {
+        // todo ⚠
+    }
+}
+
+.header-layout-container {
+    /* Use CSS variables for background and text color */
+    background: var(--header-bg);
+    color: var(--header-title);
+}
+
+.app-title {
+    color: var(--header-title);
+}

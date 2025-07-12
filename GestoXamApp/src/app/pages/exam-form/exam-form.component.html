@@ -1,0 +1,45 @@
+<div class="exam-form-container">
+  <div class="header">
+    <h1>Organiser un examen</h1>
+    <i routerLink="/" class="fa-solid fa-circle-left" title="Retour à la page d'accueil"></i>
+  </div>
+
+  <form [formGroup]="examForm" (ngSubmit)="submitForm()">
+    <div formArrayName="exams">
+      @for (exam of exams.controls; track exam; let i = $index) {
+        <div [formGroupName]="i" class="exam-form-group">
+          <div class="fields-row">
+            <input formControlName="name" placeholder="Nom" required />
+            <select formControlName="status" required>
+              <option value="">Sélectionner le statut</option>
+              <option value="En recherche de place">En recherche de place</option>
+              <option value="Confirmé">Confirmé</option>
+              <option value="À organiser">À organiser</option>
+              <option value="Annulé">Annulé</option>
+            </select>
+            <input formControlName="location" placeholder="Lieu" />
+          </div>
+          <div class="fields-row">
+            <input formControlName="date" type="date" placeholder="Date" required />
+            <input formControlName="time" type="time" placeholder="Heure" required />
+            <input formControlName="additional_status" placeholder="Statut additionnel" required />
+          </div>
+          <div class="actions-row">
+            <button type="button" class="remove-exam" (click)="removeExam(i)" [disabled]="exams.length === 1">
+              <i class="fa-solid fa-trash"></i> Supprimer
+            </button>
+          </div>
+          @if (i < exams.length - 1) {
+            <hr />
+          }
+        </div>
+      }
+    </div>
+    <div class="form-actions">
+      <button type="button" class="add-exam" (click)="addExam()">
+        <i class="fa-solid fa-plus"></i> Ajouter un examen
+      </button>
+      <button type="submit" class="submit-exams">Enregistrer</button>
+    </div>
+  </form>
+</div>

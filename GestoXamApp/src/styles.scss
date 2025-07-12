@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Roboto';
+    src: url('./assets/fonts/Roboto-Regular.ttf') format('truetype'),
+        url('./assets/fonts/Roboto-Bold.ttf') format('truetype'),
+        url('./assets/fonts/Roboto-Light.ttf') format('truetype'),
+        url('./assets/fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  --header-bg: #fff;
+  --header-title: #222;
+  background: #fefffed6;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+  font-family: 'Roboto', sans-serif;
+}
+
+body.dark-mode {
+  --header-bg: #222;
+  --header-title: #ffd700;
+  background: #181818;
+  color: #eee;
+}
