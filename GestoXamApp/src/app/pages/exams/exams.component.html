@@ -1,0 +1,29 @@
+<div class="exams-page-wrapper">
+  <div class="header">
+    <div class="title">
+      <h1>Mes examens</h1>
+      <small>{{examsData.length || 0}} examens à venir</small>
+    </div>
+    <div class="add-exam">
+      <button>Organiser un examen</button>
+    </div>
+  </div>
+  <div class="exams-list">
+    @for (item of examsData; track $index) {
+      <div class="exam-item">
+        <div class="exam-details">
+          <div> {{item.name}} </div>
+          <div> {{item.status}} </div>
+          <div> {{item.location}} </div>
+          <div> {{item.date}} </div>
+          <div> {{item.time}} </div>
+          <div> {{item.additional_status}} </div>
+        </div>
+        <div class="exam-actions">
+          <button class="edit">Modifier</button>
+          <button class="delete">Supprimer</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>
