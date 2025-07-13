@@ -6,24 +6,46 @@
     </div>
     <div class="header-actions">
       <div class="layout">
-        <img src="assets/icons/list.png" alt="list">
-        <img src="assets/icons/grid.png" alt="grid">
+        <img 
+          src="assets/icons/list.png" 
+          alt="list" 
+          [class.active]="currentLayout === 'list'"
+          (click)="switchLayout('list')">
+        <img 
+          src="assets/icons/grid.png" 
+          alt="grid" 
+          [class.active]="currentLayout === 'grid'"
+          (click)="switchLayout('grid')">
       </div>
       <div class="add-exam">
         <button routerLink="/exam-form">Organiser un examen</button>
       </div>
     </div>
   </div>
-  <div class="exams-list">
+  <div class="exams-list" [class.grid-layout]="currentLayout === 'grid'" [class.list-layout]="currentLayout === 'list'">
     @let placeholder = 'En attente';
     @for (item of examsData; track $index) {
     <div class="exam-item">
       <div class="exam-details">
-        <div> {{item.name}} </div>
-        <div> {{item.status || placeholder}} </div>
-        <div> {{item.location || placeholder}} </div>
-        <div> {{item.date || placeholder}} </div>
-        <div> {{item.time || placeholder}} </div>
+        <div class="exam-name">{{item.name}}</div>
+        <div class="exam-info">
+          <div class="info-item">
+            <span class="label">Statut</span>
+            <span class="value" [class.status]="item.status && item.status !== placeholder" [class.pending]="!item.status || item.status === placeholder">{{item.status || placeholder}}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Lieu</span>
+            <span class="value">{{item.location || placeholder}}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Date</span>
+            <span class="value">{{item.date || placeholder}}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Heure</span>
+            <span class="value">{{item.time || placeholder}}</span>
+          </div>
+        </div>
       </div>
       <div class="exam-actions">
         <button class="edit" [routerLink]="['/exam-form']" [queryParams]="{ id: item.id }">Modifier</button>

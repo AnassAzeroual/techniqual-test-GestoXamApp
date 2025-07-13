@@ -15,6 +15,7 @@ export class ExamsComponent implements OnInit {
   examsData: Exam[] = [];
   showDeleteModal = false;
   examToDelete: Exam | null = null;
+  currentLayout: 'list' | 'grid' = 'list'; // Default to list layout
 
   constructor(private readonly srvExams: ExamsService) { }
 
@@ -43,5 +44,9 @@ export class ExamsComponent implements OnInit {
         this.closeDeleteModal();
       });
     }
+  }
+
+  switchLayout(layout: 'list' | 'grid') {
+    this.currentLayout = layout;
   }
 }

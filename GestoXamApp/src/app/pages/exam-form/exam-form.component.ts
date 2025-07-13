@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CreateExam, Exam } from '../../shared/interfaces/exam.interface';
 import { ExamsService } from '../../shared/services/exams.service';
@@ -15,7 +15,7 @@ import { ExamsService } from '../../shared/services/exams.service';
 export class ExamFormComponent implements OnInit {
   examForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private readonly srvExam: ExamsService, private readonly route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private readonly srvExam: ExamsService, private readonly route: ActivatedRoute, private readonly router: Router) { }
 
   ngOnInit() {
     this.examForm = this.fb.group({
@@ -54,9 +54,12 @@ export class ExamFormComponent implements OnInit {
         const exam: CreateExam = this.examForm.value;
         this.srvExam.createExam(exam).subscribe((response) => {
           console.log('Exam created successfully:', response);
+          this.router.navigate(['/exams']);
         }
         );
       }
+    } else {
+      this.examForm.markAllAsTouched();
     }
   }
 }

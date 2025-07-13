@@ -7,7 +7,7 @@
   <form [formGroup]="examForm" (ngSubmit)="submitForm()">
     <div class="exam-form-group">
       <div class="fields-row">
-        <input class="name" formControlName="name" placeholder="Nom" />
+        <input class="name" formControlName="name" placeholder="Nom" [class.red]="examForm.get('name')?.touched && examForm.get('name')?.invalid" />
         <select formControlName="status">
           <option value="">Sélectionner le statut</option>
           <option value="En recherche de place">En recherche de place</option>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="form-actions">
-      <button type="submit" class="submit-exams">Enregistrer</button>
+      <button type="submit" class="submit-exams" [disabled]="examForm.invalid">Enregistrer</button>
     </div>
   </form>
 </div>
