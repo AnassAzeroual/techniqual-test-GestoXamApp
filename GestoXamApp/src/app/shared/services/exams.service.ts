@@ -1,7 +1,7 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Exam } from '../interfaces/exam.interface';
+import { CreateExam, Exam } from '../interfaces/exam.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +14,19 @@ export class ExamsService {
     return this.httpClient.get<Exam[]>(`${this.baseUrl}/api/exams`);
   }
 
-  getExamById(id: string) {
+  getExamById(id: number) {
     return this.httpClient.get<Exam>(`${this.baseUrl}/api/exams/${id}`);
   }
 
-  createExam(exam: Exam) {
+  createExam(exam: CreateExam) {
     return this.httpClient.post(`${this.baseUrl}/api/exams`, exam);
   }
 
-  updateExam(id: string, exam: Exam) {
+  updateExam(id: number, exam: Exam) {
     return this.httpClient.put(`${this.baseUrl}/api/exams/${id}`, exam);
   }
 
-  deleteExam(id: string) {
+  deleteExam(id: number) {
     return this.httpClient.delete(`${this.baseUrl}/api/exams/${id}`);
   }
 

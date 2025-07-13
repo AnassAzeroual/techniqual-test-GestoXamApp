@@ -9,21 +9,39 @@
     </div>
   </div>
   <div class="exams-list">
+    @let placeholder = 'En attente';
     @for (item of examsData; track $index) {
-      <div class="exam-item">
-        <div class="exam-details">
-          <div> {{item.name}} </div>
-          <div> {{item.status}} </div>
-          <div> {{item.location}} </div>
-          <div> {{item.date}} </div>
-          <div> {{item.time}} </div>
-          <div> {{item.additional_status}} </div>
-        </div>
-        <div class="exam-actions">
-          <button class="edit">Modifier</button>
-          <button class="delete">Supprimer</button>
-        </div>
+    <div class="exam-item">
+      <div class="exam-details">
+        <div> {{item.name}} </div>
+        <div> {{item.status || placeholder}} </div>
+        <div> {{item.location || placeholder}} </div>
+        <div> {{item.date || placeholder}} </div>
+        <div> {{item.time || placeholder}} </div>
       </div>
+      <div class="exam-actions">
+        <button class="edit" [routerLink]="['/exam-form']" [queryParams]="{ id: item.id }">Modifier</button>
+        <button class="delete" (click)="openDeleteModal(item)">Supprimer</button>
+      </div>
+    </div>
+    }@empty {
+    <div class="no-exams">
+      <p>Aucun examen à afficher pour le moment.</p>
+    </div>
     }
   </div>
 </div>
+
+<!-- Confirmation Modal -->
+@if (showDeleteModal) {
+<div class="modal-backdrop">
+  <div class="modal">
+    <h2>Confirmer la suppression</h2>
+    <p>Voulez-vous vraiment supprimer l'examen de <strong>{{ examToDelete?.name }}</strong> ?</p>
+    <div class="modal-actions">
+      <button class="cancel" (click)="closeDeleteModal()">Annuler</button>
+      <button class="confirm" (click)="confirmDeleteExam()">Supprimer</button>
+    </div>
+  </div>
+</div>
+}

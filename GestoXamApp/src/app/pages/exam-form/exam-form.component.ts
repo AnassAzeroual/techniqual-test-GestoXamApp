@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Exam } from '../../shared/interfaces/exam.interface';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CreateExam, Exam } from '../../shared/interfaces/exam.interface';
+import { ExamsService } from '../../shared/services/exams.service';
+
 
 @Component({
   selector: 'app-exam-form',
@@ -12,46 +14,49 @@ import { Exam } from '../../shared/interfaces/exam.interface';
 })
 export class ExamFormComponent implements OnInit {
   examForm!: FormGroup;
-  get exams(): FormArray {
-    return this.examForm.get('exams') as FormArray;
-  }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private readonly srvExam: ExamsService, private readonly route: ActivatedRoute) { }
 
   ngOnInit() {
     this.examForm = this.fb.group({
-      exams: this.fb.array([
-        this.createExamGroup()
-      ])
+      name: ['', Validators.required],
+      status: [''],
+      location: [null],
+      date: [''],
+      time: [''],
+      additional_status: ['']
     });
-  }
-
-  createExamGroup(data?: Partial<Exam>): FormGroup {
-    return this.fb.group({
-      name: [data?.name || '', Validators.required],
-      status: [data?.status || '', Validators.required],
-      location: [data?.location || null],
-      date: [data?.date || '', Validators.required],
-      time: [data?.time || '', Validators.required],
-      additional_status: [data?.additional_status || '', Validators.required]
+    this.route.queryParams.subscribe(params => {
+      const examId = params['id'];
+      if (examId) {
+        this.srvExam.getExamById(examId).subscribe((exam: Exam) => {
+          this.examForm.patchValue({
+            name: exam.name,
+            status: exam.status,
+            location: exam.location,
+            date: exam.date,
+            time: exam.time,
+          });
+        });
+      }
     });
-  }
-
-  addExam() {
-    this.exams.push(this.createExamGroup());
-  }
-
-  removeExam(index: number) {
-    if (this.exams.length > 1) {
-      this.exams.removeAt(index);
-    }
   }
 
   submitForm() {
     if (this.examForm.valid) {
-      const exams: Exam[] = this.examForm.value.exams;
-      // TODO: Call service to save exams
-      console.log('Submitted exams:', exams);
+      const examId = this.route.snapshot.queryParamMap.get('id');
+      if (examId) {
+        const exam: Exam = { id: +examId, ...this.examForm.value };
+        this.srvExam.updateExam(Number(examId), exam).subscribe((response) => {
+          console.log('Exam updated successfully:', response);
+        });
+      } else {
+        const exam: CreateExam = this.examForm.value;
+        this.srvExam.createExam(exam).subscribe((response) => {
+          console.log('Exam created successfully:', response);
+        }
+        );
+      }
     }
   }
 }
