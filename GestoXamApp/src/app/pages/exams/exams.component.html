@@ -38,7 +38,7 @@
             <span class="value" 
                   [class.status]="item.status && item.status !== placeholder" 
                   [class.pending]="!item.status || item.status === placeholder"
-                  [attr.data-status]="item.status?.toLowerCase()">{{item.status || placeholder}}</span>
+                  [attr.data-status]="item.status.toLowerCase()">{{item.status || placeholder}}</span>
           </div>
           <div class="info-item">
             <span class="label">Lieu</span>
