@@ -7,7 +7,7 @@
   <form [formGroup]="examForm" (ngSubmit)="submitForm()">
     <div class="exam-form-group">
       <div class="fields-row">
-        <input formControlName="name" placeholder="Nom" />
+        <input class="name" formControlName="name" placeholder="Nom" />
         <select formControlName="status">
           <option value="">Sélectionner le statut</option>
           <option value="En recherche de place">En recherche de place</option>
