@@ -9,6 +9,9 @@
     font-style: normal;
 }
 
+.hidden {
+    display: none !important;
+}
 
 body {
   /* Light mode variables */
@@ -84,4 +87,11 @@ body.dark-mode {
   --border-radius-modal: 14px;
   background: var(--color-bg);
   color: var(--color-text);
+  .exams-page-wrapper {
+    .layout{
+      img{
+        filter: invert(1);
+      }
+    }
+  }
 }
