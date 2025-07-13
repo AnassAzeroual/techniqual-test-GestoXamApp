@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AnimateDirective } from '../../shared/directives/animate.directive';
 import { CreateExam, Exam } from '../../shared/interfaces/exam.interface';
 import { ExamsService } from '../../shared/services/exams.service';
-
 
 @Component({
   selector: 'app-exam-form',
   templateUrl: './exam-form.component.html',
   styleUrls: ['./exam-form.component.scss'],
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule]
+  imports: [RouterLink, ReactiveFormsModule, AnimateDirective]
 })
 export class ExamFormComponent implements OnInit {
   examForm!: FormGroup;
@@ -49,6 +49,7 @@ export class ExamFormComponent implements OnInit {
         const exam: Exam = { id: +examId, ...this.examForm.value };
         this.srvExam.updateExam(Number(examId), exam).subscribe((response) => {
           console.log('Exam updated successfully:', response);
+          this.router.navigate(['/exams']);
         });
       } else {
         const exam: CreateExam = this.examForm.value;

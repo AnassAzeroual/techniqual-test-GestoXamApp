@@ -1,5 +1,5 @@
 <div class="exams-page-wrapper">
-  <div class="header">
+  <div class="header" appAnimate="fadeIn" animationDelay="0.1s">
     <div class="title">
       <h1>Mes examens</h1>
       <small>{{examsData.length || 0}} examen<span [class.hidden]="examsData.length < 2">s</span> à venir</small>
@@ -25,7 +25,10 @@
   <div class="exams-list" [class.grid-layout]="currentLayout === 'grid'" [class.list-layout]="currentLayout === 'list'">
     @let placeholder = 'En attente';
     @for (item of examsData; track $index) {
-    <div class="exam-item">
+    <div class="exam-item" 
+         [appAnimate]="deletingItemId === item.id ? 'flipOutX' : 'fadeInDown'" 
+         [animationDelay]="deletingItemId === item.id ? '0s' : ($index * 0.1) + 's'"
+         [animationDuration]="deletingItemId === item.id ? '0.6s' : '1s'">
       <div class="exam-details">
         <div class="exam-name">{{item.name}}</div>
         <div class="exam-info">
@@ -62,7 +65,7 @@
 
 <!-- Confirmation Modal -->
 @if (showDeleteModal) {
-<div class="modal-backdrop">
+<div class="modal-backdrop" appAnimate="fadeIn" animationDuration="0.3s">
   <div class="modal-context">
     <i class="fa-solid fa-trash-can"></i>
   </div>

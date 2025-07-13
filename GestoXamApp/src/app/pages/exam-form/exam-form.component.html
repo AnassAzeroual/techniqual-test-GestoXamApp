@@ -1,5 +1,5 @@
-<div class="exam-form-container">
-  <div class="header">
+<div class="exam-form-container" appAnimate="fadeIn" animationDuration="0.8s">
+  <div class="header" appAnimate="flipInX" animationDelay="0.2s">
     <h1>Organiser un examen</h1>
     <i routerLink="/" class="fa-solid fa-circle-left" title="Retour à la page d'accueil"></i>
   </div>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="form-actions">
-      <button type="submit" class="submit-exams" [disabled]="examForm.invalid">Enregistrer</button>
+      <button type="submit" class="submit-exams">Enregistrer</button>
     </div>
   </form>
 </div>
