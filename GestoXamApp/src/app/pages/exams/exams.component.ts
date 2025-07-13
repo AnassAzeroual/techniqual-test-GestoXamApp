@@ -4,13 +4,14 @@ import { RouterLink } from '@angular/router';
 import { Exam } from '../../shared/interfaces/exam.interface';
 import { ExamsService } from '../../shared/services/exams.service';
 import { AnimateDirective } from '../../shared/directives/animate.directive';
+import { StatusBorderDirective } from '../../shared/directives/status-border.directive';
 
 @Component({
   selector: 'app-exams',
   templateUrl: './exams.component.html',
   styleUrls: ['./exams.component.scss'],
   standalone: true,
-  imports: [RouterLink, AnimateDirective]
+  imports: [RouterLink, AnimateDirective, StatusBorderDirective]
 })
 export class ExamsComponent implements OnInit {
   examsData: Exam[] = [];

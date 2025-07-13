@@ -138,28 +138,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-left: 4px solid #ffd700;
+      border-left: 4px solid #ffd700; // Default color, will be overridden by directive
       padding: 1.5rem 2rem;
       position: relative;
-      overflow: hidden;
+      transition: all 0.3s ease;
 
       &:hover {
-        transform: translateX(-3px);
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background: linear-gradient(45deg, #ffd700, #ffb300);
-        transition: width 0.3s ease;
-      }
-
-      &:hover::before {
-        width: 8px;
+        transform: translateX(3px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       }
 
       .exam-details {
@@ -218,7 +204,7 @@
 
               &.status {
                 padding: 0.25rem 0.75rem;
-                border-radius: 20px;
+                border-radius: 8px;
                 font-size: 0.85rem;
                 font-weight: 600;
                 background: #e8f5e8;
@@ -226,10 +212,29 @@
                 border: 1px solid #4caf50;
               }
 
-              &.pending {
-                background: #fff3cd;
-                color: #856404;
-                border: 1px solid #ffc107;
+              // Status-specific colors
+              &[data-status="confirmé"] {
+                background: #d4edda;
+                color: #155724;
+                border: 1px solid #28a745;
+              }
+
+              &[data-status="en recherche de place"] {
+                background: #d1ecf1;
+                color: #0c5460;
+                border: 1px solid #17a2b8;
+              }
+
+              &[data-status="à organiser"] {
+                background: #ffe8d4;
+                color: #a0522d;
+                border: 1px solid #fd7e14;
+              }
+
+              &[data-status="annulé"] {
+                background: #f8d7da;
+                color: #721c24;
+                border: 1px solid #dc3545;
               }
             }
           }

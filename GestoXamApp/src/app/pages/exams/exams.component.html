@@ -28,13 +28,17 @@
     <div class="exam-item" 
          [appAnimate]="deletingItemId === item.id ? 'flipOutX' : 'fadeInDown'" 
          [animationDelay]="deletingItemId === item.id ? '0s' : ($index * 0.1) + 's'"
-         [animationDuration]="deletingItemId === item.id ? '0.6s' : '1s'">
+         [animationDuration]="deletingItemId === item.id ? '0.6s' : '1s'"
+         [appStatusBorder]="item.status">
       <div class="exam-details">
         <div class="exam-name">{{item.name}}</div>
         <div class="exam-info">
           <div class="info-item">
             <span class="label">Statut</span>
-            <span class="value" [class.status]="item.status && item.status !== placeholder" [class.pending]="!item.status || item.status === placeholder">{{item.status || placeholder}}</span>
+            <span class="value" 
+                  [class.status]="item.status && item.status !== placeholder" 
+                  [class.pending]="!item.status || item.status === placeholder"
+                  [attr.data-status]="item.status?.toLowerCase()">{{item.status || placeholder}}</span>
           </div>
           <div class="info-item">
             <span class="label">Lieu</span>
