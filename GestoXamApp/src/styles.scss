@@ -9,18 +9,79 @@
     font-style: normal;
 }
 
+
 body {
+  /* Light mode variables */
+  --color-bg: #fefffed6;
+  --color-text: #222;
   --header-bg: #fff;
   --header-title: #222;
-  background: #fefffed6;
-  color: #222;
+  --exams-bg: #fff;
+  --exams-title: #222;
+  --exam-item-bg: #f9f9f9;
+  --modal-bg: #fff;
+  --modal-text: #222;
+  --modal-danger: #d32f2f;
+  --modal-cancel-bg: #eee;
+  --modal-cancel-text: #222;
+  --modal-cancel-hover: #ddd;
+  --button-bg: #ffd700;
+  --button-bg-gradient: linear-gradient(90deg, #ffd700 0%, #ffb300 100%);
+  --button-text: #222;
+  --button-hover-bg: linear-gradient(90deg, #ffb300 0%, #ffd700 100%);
+  --button-hover-text: #111;
+  --danger-bg: #ff4d4f;
+  --danger-text: #fff;
+  --input-bg: #fff;
+  --input-border: #ddd;
+  --input-focus-border: #ffd700;
+  --input-focus-bg: #fdf6e3;
+  --card-bg: #f7f7f7;
+  --card-border: #eee;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  --shadow: 0 2px 8px rgba(0,0,0,0.07);
+  --shadow-modal: 0 4px 32px rgba(0,0,0,0.18);
+  --border-radius: 8px;
+  --border-radius-modal: 14px;
+  background: var(--color-bg);
+  color: var(--color-text);
   transition: background 0.3s, color 0.3s;
   font-family: 'Roboto', sans-serif;
 }
 
 body.dark-mode {
+  /* Dark mode variables */
+  --color-bg: #181818;
+  --color-text: #eee;
   --header-bg: #222;
   --header-title: #ffd700;
-  background: #181818;
-  color: #eee;
+  --exams-bg: #232323;
+  --exams-title: #ffd700;
+  --exam-item-bg: #2c2c2c;
+  --modal-bg: #232323;
+  --modal-text: #ffd700;
+  --modal-danger: #ff4d4f;
+  --modal-cancel-bg: #444;
+  --modal-cancel-text: #ffd700;
+  --modal-cancel-hover: #333;
+  --button-bg: #ffd700;
+  --button-bg-gradient: linear-gradient(90deg, #ffd700 0%, #ffb300 100%);
+  --button-text: #222;
+  --button-hover-bg: linear-gradient(90deg, #ffb300 0%, #ffd700 100%);
+  --button-hover-text: #111;
+  --danger-bg: #ff4d4f;
+  --danger-text: #fff;
+  --input-bg: #222;
+  --input-border: #555;
+  --input-focus-border: #ffd700;
+  --input-focus-bg: #333;
+  --card-bg: #232323;
+  --card-border: #333;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.20);
+  --shadow: 0 2px 8px rgba(0,0,0,0.20);
+  --shadow-modal: 0 4px 32px rgba(0,0,0,0.40);
+  --border-radius: 8px;
+  --border-radius-modal: 14px;
+  background: var(--color-bg);
+  color: var(--color-text);
 }
