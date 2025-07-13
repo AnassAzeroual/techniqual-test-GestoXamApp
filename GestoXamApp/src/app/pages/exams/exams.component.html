@@ -2,10 +2,16 @@
   <div class="header">
     <div class="title">
       <h1>Mes examens</h1>
-      <small>{{examsData.length || 0}} examens à venir</small>
+      <small>{{examsData.length || 0}} examen<span [class.hidden]="examsData.length < 2">s</span> à venir</small>
     </div>
-    <div class="add-exam">
-      <button routerLink="/exam-form">Organiser un examen</button>
+    <div class="header-actions">
+      <div class="layout">
+        <img src="assets/icons/list.png" alt="list">
+        <img src="assets/icons/grid.png" alt="grid">
+      </div>
+      <div class="add-exam">
+        <button routerLink="/exam-form">Organiser un examen</button>
+      </div>
     </div>
   </div>
   <div class="exams-list">
@@ -35,6 +41,9 @@
 <!-- Confirmation Modal -->
 @if (showDeleteModal) {
 <div class="modal-backdrop">
+  <div class="modal-context">
+    <i class="fa-solid fa-trash-can"></i>
+  </div>
   <div class="modal">
     <h2>Confirmer la suppression</h2>
     <p>Voulez-vous vraiment supprimer l'examen de <strong>{{ examToDelete?.name }}</strong> ?</p>
