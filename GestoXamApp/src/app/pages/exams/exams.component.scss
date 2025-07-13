@@ -113,6 +113,66 @@
             border-bottom: none;
           }
         }
+
+        .exam-info {
+
+          .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 120px;
+
+            .label {
+              font-size: 0.85rem;
+              color: #888;
+              font-weight: 500;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              margin-bottom: 0.25rem;
+            }
+
+            .value {
+              font-size: 1rem;
+              color: var(--color-text, #222);
+              font-weight: 500;
+
+              &.status {
+                padding: 0.25rem 0.75rem;
+                border-radius: 8px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                background: #e8f5e8;
+                color: #2e7d32;
+                border: 1px solid #4caf50;
+              }
+
+              // Status-specific colors
+              &[data-status="confirmé"] {
+                background: #d4edda;
+                color: #155724;
+                border: 1px solid #28a745;
+              }
+
+              &[data-status="en recherche de place"] {
+                background: #d1ecf1;
+                color: #0c5460;
+                border: 1px solid #17a2b8;
+              }
+
+              &[data-status="à organiser"] {
+                background: #ffe8d4;
+                color: #a0522d;
+                border: 1px solid #fd7e14;
+              }
+
+              &[data-status="annulé"] {
+                background: #f8d7da;
+                color: #721c24;
+                border: 1px solid #dc3545;
+              }
+            }
+          }
+        }
       }
 
       .exam-actions {
@@ -142,10 +202,8 @@
       padding: 1.5rem 2rem;
       position: relative;
       transition: all 0.3s ease;
-
       &:hover {
-        transform: translateX(3px);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        scale: 1.02;
       }
 
       .exam-details {
