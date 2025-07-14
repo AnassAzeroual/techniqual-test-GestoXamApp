@@ -60,7 +60,6 @@ export class ExamFormComponent implements OnInit, OnDestroy {
         this.srvExam.updateExam(Number(examId), exam)
         .pipe(takeUntil(this.$subject))
         .subscribe((response) => {
-          console.log('Exam updated successfully:', response);
           this.router.navigate(['/exams']);
         });
       } else {
@@ -68,7 +67,6 @@ export class ExamFormComponent implements OnInit, OnDestroy {
         this.srvExam.createExam(exam)
         .pipe(takeUntil(this.$subject))
         .subscribe((response) => {
-          console.log('Exam created successfully:', response);
           this.router.navigate(['/exams']);
         }
         );
