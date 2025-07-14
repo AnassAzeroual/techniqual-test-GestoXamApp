@@ -5,6 +5,7 @@ import { Exam } from '../../shared/interfaces/exam.interface';
 import { ExamsService } from '../../shared/services/exams.service';
 import { AnimateDirective } from '../../shared/directives/animate.directive';
 import { StatusBorderDirective } from '../../shared/directives/status-border.directive';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-exams',
@@ -17,17 +18,24 @@ export class ExamsComponent implements OnInit {
   examsData: Exam[] = [];
   showDeleteModal = false;
   examToDelete: Exam | null = null;
-  currentLayout: 'list' | 'grid' = 'list'; // Default to list layout
-  deletingItemId: number | null = null; // Track which item is being deleted
+  currentLayout: 'list' | 'grid' = 'list';
+  deletingItemId: number | null = null;
+  $subject = new Subject<void>();
 
   constructor(private readonly srvExams: ExamsService) { }
 
   ngOnInit() {
-    this.srvExams.getExams().subscribe(
-      (data: Exam[]) => {
-        this.examsData = data;
-      }
-    );
+    this.getListExams();
+  }
+
+  private getListExams() {
+    this.srvExams.getExams()
+      .pipe(takeUntil(this.$subject))
+      .subscribe(
+        (data: Exam[]) => {
+          this.examsData = data;
+        }
+      );
   }
 
   openDeleteModal(exam: Exam) {
@@ -44,9 +52,11 @@ export class ExamsComponent implements OnInit {
     this.deletingItemId = this.examToDelete?.id || null;
     this.closeDeleteModal();
     if (!this.deletingItemId) return;
-      
-      setTimeout(() => {
-        this.srvExams.deleteExam(Number(this.deletingItemId)).subscribe(() => {
+    
+    setTimeout(() => {
+      this.srvExams.deleteExam(Number(this.deletingItemId))
+      .pipe(takeUntil(this.$subject))
+      .subscribe(() => {
           this.examsData = this.examsData.filter(e => e.id !== this.deletingItemId);
           this.deletingItemId = null;
           this.examToDelete = null;

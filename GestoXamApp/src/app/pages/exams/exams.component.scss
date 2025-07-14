@@ -198,7 +198,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-left: 4px solid #ffd700; // Default color, will be overridden by directive
+      border-left: 4px solid #ffd700;
       padding: 1.5rem 2rem;
       position: relative;
       transition: all 0.3s ease;
@@ -472,6 +472,9 @@
   }
 }
 
+/* -------------------------------------------------------------------------- */
+/*                               backdrop modal                               */
+/* -------------------------------------------------------------------------- */
 .modal-backdrop {
   position: fixed;
   top: 0;

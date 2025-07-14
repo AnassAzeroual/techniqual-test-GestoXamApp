@@ -14,7 +14,7 @@ app.get('/api/exams', (req, res) => {
 
 app.post('/api/exams', (req, res) => {
   const newItem = req.body;
-  newItem.id = (items.length || 0) + 1;
+  newItem.id = new Date().getTime();
   items.push(newItem);
   res.status(201).json(newItem);
 });

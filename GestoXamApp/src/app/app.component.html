@@ -1,21 +1,6 @@
-
-<header class="header-layout-container">
-  <div class="logo">
-    <img src="../assets/logo/logo.png" alt="Logo" />
-    <span class="app-title">GestoXam</span>
-  </div>
-  <div class="header-actions">
-    <label class="dark-mode-switch" (click)="toggleDarkMode()">
-      <span class="switch-label">
-        @if (isDarkMode) {
-            <img src="../assets/icons/light-mode.png" alt="light mode">
-        }
-        @else {
-            <img src="../assets/icons/dark-mode.png" alt="dark mode">
-        }
-    </span>
-    </label>
-  </div>
-</header>
-
+@defer (on timer(3000ms)) {
+<app-header></app-header>
 <router-outlet />
+}@placeholder {
+<app-splash></app-splash>
+}

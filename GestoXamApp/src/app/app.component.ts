@@ -1,35 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SplashComponent } from './pages/splash/splash.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { HelpersService } from './shared/services/helpers.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,SplashComponent,HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'GestoXamApp';
-  isDarkMode = false;
-
-  ngOnInit() {
-    this.isDarkMode = !!localStorage.getItem('darkMode');
-    this.setDarkMode(this.isDarkMode);
-  }
-
-  toggleDarkMode() {
-    this.setDarkMode(this.isDarkMode);
-    localStorage.setItem('darkMode', JSON.stringify(this.isDarkMode));
-  }
-
-  setDarkMode(isDarkMode: boolean) {
-    console.log(`Setting dark mode to: ${isDarkMode}`);
-    
-    if (isDarkMode) {
-      document.body.classList.remove('dark-mode');
-      this.isDarkMode = false;
-    } else {
-      document.body.classList.add('dark-mode');
-      this.isDarkMode = true;
-    }
+  constructor(private readonly srvHelper: HelpersService) {
+    srvHelper.switchTheme();
   }
 }
