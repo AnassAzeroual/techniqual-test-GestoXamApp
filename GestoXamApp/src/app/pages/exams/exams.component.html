@@ -46,7 +46,7 @@
           </div>
           <div class="info-item">
             <span class="label">Date</span>
-            <span class="value">{{item.date || placeholder}}</span>
+            <span class="value">{{(item.date | date:'d MMMM') || placeholder}}</span>
           </div>
           <div class="info-item">
             <span class="label">Heure</span>

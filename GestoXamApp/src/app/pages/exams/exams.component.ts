@@ -6,13 +6,14 @@ import { ExamsService } from '../../shared/services/exams.service';
 import { AnimateDirective } from '../../shared/directives/animate.directive';
 import { StatusBorderDirective } from '../../shared/directives/status-border.directive';
 import { Subject, takeUntil } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-exams',
   templateUrl: './exams.component.html',
   styleUrls: ['./exams.component.scss'],
   standalone: true,
-  imports: [RouterLink, AnimateDirective, StatusBorderDirective]
+  imports: [RouterLink, AnimateDirective, StatusBorderDirective,DatePipe]
 })
 export class ExamsComponent implements OnInit {
   examsData: Exam[] = [];
